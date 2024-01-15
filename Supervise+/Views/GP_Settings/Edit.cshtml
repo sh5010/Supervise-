@@ -1,0 +1,74 @@
+﻿@model Supervise_.Models.GP_Settings
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>GP_Settings</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="Max_students_number" class="control-label"></label>
+                <input asp-for="Max_students_number" class="form-control" />
+                <span asp-validation-for="Max_students_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Min_students_number" class="control-label"></label>
+                <input asp-for="Min_students_number" class="form-control" />
+                <span asp-validation-for="Min_students_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Num_of_male_groups" class="control-label"></label>
+                <input asp-for="Num_of_male_groups" class="form-control" />
+                <span asp-validation-for="Num_of_male_groups" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Num_of_female_groups" class="control-label"></label>
+                <input asp-for="Num_of_female_groups" class="form-control" />
+                <span asp-validation-for="Num_of_female_groups" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dr_supervision_limit" class="control-label"></label>
+                <input asp-for="Dr_supervision_limit" class="form-control" />
+                <span asp-validation-for="Dr_supervision_limit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ms_supervision_limit" class="control-label"></label>
+                <input asp-for="Ms_supervision_limit" class="form-control" />
+                <span asp-validation-for="Ms_supervision_limit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="M_F__supervision_limit" class="control-label"></label>
+                <input asp-for="M_F__supervision_limit" class="form-control" />
+                <span asp-validation-for="M_F__supervision_limit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Term1_SubmissionDeadline" class="control-label"></label>
+                <input asp-for="Term1_SubmissionDeadline" class="form-control" />
+                <span asp-validation-for="Term1_SubmissionDeadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Term2_SubmissionDeadline" class="control-label"></label>
+                <input asp-for="Term2_SubmissionDeadline" class="form-control" />
+                <span asp-validation-for="Term2_SubmissionDeadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
