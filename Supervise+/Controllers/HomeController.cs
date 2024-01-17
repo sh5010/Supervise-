@@ -22,9 +22,6 @@ namespace Supervise_.Controllers
         {
             return View();
         }
-
-       
-
         public IActionResult Privacy()
         {
             return View();
