@@ -18,6 +18,15 @@ namespace Supervise_.Controllers
         {
             return View();
         }
+        public IActionResult FacultyHome()
+        {
+            return View();
+        }
+
+        public IActionResult GPMemberHome()
+        {
+            return View();
+        }
         public IActionResult login()
         {
             return View();
