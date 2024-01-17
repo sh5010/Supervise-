@@ -17,5 +17,7 @@ namespace Supervise_.Data
         public DbSet<Supervise_.Models.facultys> facultys { get; set; } = default!;
 
         public DbSet<Supervise_.Models.GP_Settings>? GP_Settings { get; set; }
+
+        public DbSet<Supervise_.Models.Student>? Student { get; set; }
     }
 }
