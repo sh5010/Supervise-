@@ -19,5 +19,7 @@ namespace Supervise_.Data
         public DbSet<Supervise_.Models.GP_Settings>? GP_Settings { get; set; }
 
         public DbSet<Supervise_.Models.Student>? Student { get; set; }
+
+        public DbSet<Supervise_.Models.usert>? usert { get; set; }
     }
 }
