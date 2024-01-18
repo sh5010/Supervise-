@@ -36,7 +36,7 @@ namespace Supervise_.Controllers
             }
 
             var gP_Settings = await _context.GP_Settings
-                .FirstOrDefaultAsync(m => m.id == id);
+                .FirstOrDefaultAsync(m => m.id == id); ; ; ; ; ; ; ; ; ;
             if (gP_Settings == null)
             {
                 return NotFound();
