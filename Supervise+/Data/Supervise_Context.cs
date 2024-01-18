@@ -13,13 +13,16 @@ namespace Supervise_.Data
             : base(options)
         {
         }
+        
+        public DbSet<Supervise_.Models.sp_user_account>? sp_user_account { get; set; }
+        
+        public DbSet<Supervise_.Models.sp_gp_setting>? sp_gp_setting { get; set; }
+        
+        public DbSet<Supervise_.Models.sp_student>? sp_student { get; set; }
+        
+        public DbSet<Supervise_.Models.sp_instructor>? sp_instructor { get; set; }
+        
 
-        public DbSet<Supervise_.Models.facultys> facultys { get; set; } = default!;
-
-        public DbSet<Supervise_.Models.GP_Settings>? GP_Settings { get; set; }
-
-        public DbSet<Supervise_.Models.Student>? Student { get; set; }
-
-        public DbSet<Supervise_.Models.usert>? usert { get; set; }
+      
     }
 }

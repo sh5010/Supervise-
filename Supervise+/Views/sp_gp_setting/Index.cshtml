@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Supervise_.Models.sp_gp_setting>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Max_st_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Min_st_num)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Num_male_grp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Num_female_grp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dr_supr_limit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ms_supr_limit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.M_F_supr_limit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Term1_Subm_deadline)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Term2_Subm_deadline)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Max_st_num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Min_st_num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_male_grp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num_female_grp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dr_supr_limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ms_supr_limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.M_F_supr_limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Term1_Subm_deadline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Term2_Subm_deadline)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

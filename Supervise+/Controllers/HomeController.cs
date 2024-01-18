@@ -31,6 +31,48 @@ namespace Supervise_.Controllers
         {
             return View();
         }
+
+        [HttpPost, ActionName("login")]
+       
+        public async Task<IActionResult> login(string na, string pa)
+        {
+            var builder = WebApplication.CreateBuilder();
+            string conStr = builder.Configuration.GetConnectionString("Supervise_Context");
+            SqlConnection conn1 = new SqlConnection(conStr);
+            string sql;
+            sql = "SELECT * FROM sp_user_account where name ='" + na + "' and  password ='" + pa + "' ";
+            SqlCommand comm = new SqlCommand(sql, conn1);
+            conn1.Open();
+            SqlDataReader reader = comm.ExecuteReader();
+
+            if (reader.Read())
+            {
+                string id = Convert.ToString((int)reader["Id"]);
+                string na1 = (string)reader["name"];
+                string ro = (string)reader["role"];
+                HttpContext.Session.SetString("userid", id);
+                HttpContext.Session.SetString("Name", na1);
+                HttpContext.Session.SetString("Role", ro);
+                reader.Close();
+                conn1.Close();
+                if (ro == "student")
+                    return RedirectToAction("sthome", "Home");
+                else if (ro == "instructor")
+                    return RedirectToAction("Index", "Home");
+                else if (ro == "gpcm")
+                    return RedirectToAction("Index", "Home");
+                else
+                    return View();
+            }
+            else
+            {
+                ViewData["Message"] = "wrong user name password";
+                return View();
+            }
+        }
+
+
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,72 @@
+﻿@model Supervise_.Models.sp_gp_setting
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>sp_gp_setting</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Max_st_num)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Max_st_num)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Min_st_num)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Min_st_num)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Num_male_grp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Num_male_grp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Num_female_grp)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Num_female_grp)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dr_supr_limit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dr_supr_limit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ms_supr_limit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ms_supr_limit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.M_F_supr_limit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.M_F_supr_limit)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Term1_Subm_deadline)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Term1_Subm_deadline)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Term2_Subm_deadline)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Term2_Subm_deadline)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
