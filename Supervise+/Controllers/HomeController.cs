@@ -52,7 +52,7 @@ namespace Supervise_.Controllers
                 string ro = (string)reader["role"];
                 HttpContext.Session.SetString("userid", id);
                 HttpContext.Session.SetString("Name", na1);
-                HttpContext.Session.SetString("Role", ro);
+                HttpContext.Session.SetString("Role", ro); ;
                 reader.Close();
                 conn1.Close();
                 if (ro == "student")
