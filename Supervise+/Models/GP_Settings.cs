@@ -12,7 +12,7 @@ namespace Supervise_.Models
         public int Num_of_female_groups { get; set; }
         public int Dr_supervision_limit { get; set; }
         public int Ms_supervision_limit { get; set; }
-        public int M_F__supervision_limit { get; set; }
+        public int MF_supervision_limit { get; set; }
         [BindProperty, DataType(DataType.Date)]
         public DateTime Term1_SubmissionDeadline { get; set; }
         [BindProperty, DataType(DataType.Date)]

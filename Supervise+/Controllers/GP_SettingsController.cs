@@ -56,7 +56,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Max_students_number,Min_students_number,Num_of_male_groups,Num_of_female_groups,Dr_supervision_limit,Ms_supervision_limit,M_F__supervision_limit,Term1_SubmissionDeadline,Term2_SubmissionDeadline")] GP_Settings gP_Settings)
+        public async Task<IActionResult> Create([Bind("id,Max_students_number,Min_students_number,Num_of_male_groups,Num_of_female_groups,Dr_supervision_limit,Ms_supervision_limit,MF_supervision_limit,Term1_SubmissionDeadline,Term2_SubmissionDeadline")] GP_Settings gP_Settings)
         {
             if (ModelState.IsValid)
             {
@@ -68,12 +68,9 @@ namespace Supervise_.Controllers
         }
 
         // GET: GP_Settings/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit()
         {
-            if (id == null || _context.GP_Settings == null)
-            {
-                return NotFound();
-            }
+            int id = 1;
 
             var gP_Settings = await _context.GP_Settings.FindAsync(id);
             if (gP_Settings == null)
@@ -88,7 +85,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Max_students_number,Min_students_number,Num_of_male_groups,Num_of_female_groups,Dr_supervision_limit,Ms_supervision_limit,M_F__supervision_limit,Term1_SubmissionDeadline,Term2_SubmissionDeadline")] GP_Settings gP_Settings)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Max_students_number,Min_students_number,Num_of_male_groups,Num_of_female_groups,Dr_supervision_limit,Ms_supervision_limit,MF_supervision_limit,Term1_SubmissionDeadline,Term2_SubmissionDeadline")] GP_Settings gP_Settings)
         {
             if (id != gP_Settings.id)
             {
