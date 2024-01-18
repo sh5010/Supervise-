@@ -13,7 +13,7 @@ namespace Supervise_.Controllers
 {
     public class sp_gp_settingController : Controller
     {
-        private readonly Supervise_Context _context;
+        private readonly Supervise_Context _context;;
 
         public sp_gp_settingController(Supervise_Context context)
         {
