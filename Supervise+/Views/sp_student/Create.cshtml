@@ -13,45 +13,67 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label> Name of student </label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
+                <label> Gender of student </label>
                 <input asp-for="Gender" class="form-control" />
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
+                <label> Email of student </label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Phone" class="control-label"></label>
+                <label> Phone Number of student </label>
                 <input asp-for="Phone" class="form-control" />
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="Completed_hrs" class="control-label"></label>
-                <input asp-for="Completed_hrs" class="form-control" />
+                          <label> The student completes the number of hours required for GP </label>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Completed_hrs" value="yes" /> Yes</label>
+                          </div>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Completed_hrs" value="no"  />No</label>
+                          </div>
                 <span asp-validation-for="Completed_hrs" class="text-danger"></span>
-            </div>
+                      </div>
+            
             <div class="form-group">
-                <label asp-for="GPA" class="control-label"></label>
+                <label> GPA of student </label>
                 <input asp-for="GPA" class="form-control" />
                 <span asp-validation-for="GPA" class="text-danger"></span>
             </div>
+         
+
             <div class="form-group">
-                <label asp-for="Is_pass_web2" class="control-label"></label>
-                <input asp-for="Is_pass_web2" class="form-control" />
+                          <label> The student passes web2 one of the requirements for GP </label>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Is_pass_web2" value="yes" /> Yes</label>
+                          </div>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Is_pass_web2" value="no"  />No</label>
+                          </div>
                 <span asp-validation-for="Is_pass_web2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Is_pass_pr_mang" class="control-label"></label>
-                <input asp-for="Is_pass_pr_mang" class="form-control" />
+                      </div>
+           
+ 
+                     <div class="form-group">
+                          <label> The student passes project management one of the requirements for GP </label>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Is_pass_pr_mang" value="yes" /> Yes</label>
+                          </div>
+                          <div class="checkbox">
+                <label> <input type="radio" asp-for="Is_pass_pr_mang" value="no"  />No</label>
+                          </div>
                 <span asp-validation-for="Is_pass_pr_mang" class="text-danger"></span>
-            </div>
+                      </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
