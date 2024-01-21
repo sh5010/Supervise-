@@ -58,9 +58,9 @@ namespace Supervise_.Controllers
                 if (ro == "student")
                     return RedirectToAction("sthome", "Home");
                 else if (ro == "instructor")
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("FacultyHome", "Home");
                 else if (ro == "gpcm")
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("GPMemberHome", "Home");
                 else
                     return View();
             }
@@ -69,6 +69,7 @@ namespace Supervise_.Controllers
                 ViewData["Message"] = "wrong user name password";
                 return View();
             }
+
         }
 
 
