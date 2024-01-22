@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Supervise_.Data;
 using Supervise_.Models;
@@ -58,13 +59,34 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Password,Role")] sp_user_account sp_user_account)
         {
-            if (ModelState.IsValid)
+            var builder = WebApplication.CreateBuilder();
+            string conStr = builder.Configuration.GetConnectionString("Supervise_Context");
+            SqlConnection conn = new SqlConnection(conStr);
+            conn.Open();
+            Boolean flage = false;
+            string sql = "select * from sp_user_account  where name = '" + sp_user_account.Name + "'";
+            SqlCommand comm = new SqlCommand(sql, conn);
+            SqlDataReader reader = comm.ExecuteReader();
+            if (reader.Read())
+            { flage = true; }
+            reader.Close();
+            conn.Close();
+            if (flage == true)
             {
+                ViewData["message"] = "name already exists";
+                return View();
+
+            }
+            else
+            {
+
+                HttpContext.Session.SetString("stname", sp_user_account.Name);
+                sp_user_account.Role = "student";
                 _context.Add(sp_user_account);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "sp_student");
             }
-            return View(sp_user_account);
+            
         }
 
         // GET: sp_user_account/Edit/5

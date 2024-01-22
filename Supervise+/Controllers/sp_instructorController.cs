@@ -58,13 +58,12 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(sp_instructor);
+
+
+            _context.Add(sp_instructor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(sp_instructor);
+           
         }
 
         // GET: sp_instructor/Edit/5
