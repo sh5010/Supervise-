@@ -11,55 +11,55 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Max_st_num" class="control-label"></label>
+                <label>Maximum number of students allowed in a GP Group</label>
                 <input asp-for="Max_st_num" class="form-control" />
                 <span asp-validation-for="Max_st_num" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Min_st_num" class="control-label"></label>
+                <label>Minimum number of students allowed in a GP Group</label>
                 <input asp-for="Min_st_num" class="form-control" />
                 <span asp-validation-for="Min_st_num" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Num_male_grp" class="control-label"></label>
+                <label>Number of male students</label>
                 <input asp-for="Num_male_grp" class="form-control" />
                 <span asp-validation-for="Num_male_grp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Num_female_grp" class="control-label"></label>
+                <label>Number of female students</label>
                 <input asp-for="Num_female_grp" class="form-control" />
                 <span asp-validation-for="Num_female_grp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Dr_supr_limit" class="control-label"></label>
+                <label>Define the maximum limit for the number of Dr supervisors</label>
                 <input asp-for="Dr_supr_limit" class="form-control" />
                 <span asp-validation-for="Dr_supr_limit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Ms_supr_limit" class="control-label"></label>
+                <label>Define the maximum limit for the number of Ms supervisors</label>
                 <input asp-for="Ms_supr_limit" class="form-control" />
                 <span asp-validation-for="Ms_supr_limit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="M_F_supr_limit" class="control-label"></label>
+                <label>Define the maximum limit for male and female supervisors</label>
                 <input asp-for="M_F_supr_limit" class="form-control" />
                 <span asp-validation-for="M_F_supr_limit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Term1_Subm_deadline" class="control-label"></label>
+                <label>Deadline for term1</label>
                 <input asp-for="Term1_Subm_deadline" class="form-control" />
                 <span asp-validation-for="Term1_Subm_deadline" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Term2_Subm_deadline" class="control-label"></label>
+                <label>Deadline for term2</label>
                 <input asp-for="Term2_Subm_deadline" class="form-control" />
                 <span asp-validation-for="Term2_Subm_deadline" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
