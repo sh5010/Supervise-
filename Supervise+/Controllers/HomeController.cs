@@ -27,7 +27,7 @@ namespace Supervise_.Controllers
         {
             return View();
         }
-        public IActionResult login()
+        public IActionResult Login()
         {
             return View();
         }
