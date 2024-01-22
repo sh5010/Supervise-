@@ -26,7 +26,7 @@ namespace Supervise_.Data
         
         public DbSet<Supervise_.Models.sp_GP_Group>? sp_GP_Group { get; set; }
         
-
+        
       
     }
 }
