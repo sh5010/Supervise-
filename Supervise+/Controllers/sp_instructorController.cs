@@ -22,9 +22,9 @@ namespace Supervise_.Controllers
         // GET: sp_instructor
         public async Task<IActionResult> Index()
         {
-              return _context.sp_instructor != null ? 
-                          View(await _context.sp_instructor.ToListAsync()) :
-                          Problem("Entity set 'Supervise_Context.sp_instructor'  is null.");
+            return _context.sp_instructor != null ?
+                        View(await _context.sp_instructor.ToListAsync()) :
+                        Problem("Entity set 'Supervise_Context.sp_instructor'  is null.");
         }
 
         // GET: sp_instructor/Details/5
@@ -56,25 +56,23 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
+        public async Task<IActionResult> Create([Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
         {
 
 
             _context.Add(sp_instructor);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-           
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: sp_instructor/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit()
         {
-            if (id == null || _context.sp_instructor == null)
-            {
-                return NotFound();
-            }
+            string na = (HttpContext.Session.GetString("Name"));
 
-            var sp_instructor = await _context.sp_instructor.FindAsync(id);
+
+            var sp_instructor = await _context.sp_instructor.Where(m => m.Name == na).FirstOrDefaultAsync();
             if (sp_instructor == null)
             {
                 return NotFound();
@@ -87,35 +85,19 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
         {
-            if (id != sp_instructor.Id)
-            {
-                return NotFound();
-            }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(sp_instructor);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!sp_instructorExists(sp_instructor.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(sp_instructor);
+
+            string na = (HttpContext.Session.GetString("Name"));
+            sp_instructor.Name = na;
+            _context.Update(sp_instructor);
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Index));
         }
+    
 
         // GET: sp_instructor/Delete/5
         public async Task<IActionResult> Delete(int? id)

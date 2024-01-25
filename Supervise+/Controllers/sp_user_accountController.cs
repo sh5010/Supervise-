@@ -79,12 +79,40 @@ namespace Supervise_.Controllers
             }
             else
             {
+                string ro ="";
+                ro = HttpContext.Session.GetString("Role");
+                HttpContext.Session.SetString("Role", "");
 
-                HttpContext.Session.SetString("stname", sp_user_account.Name);
-                sp_user_account.Role = "student";
-                _context.Add(sp_user_account);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Create", "sp_student");
+
+                if (ro == "gpcm")
+                {
+                    sp_user_account.Role = "instructor";
+                    _context.Add(sp_user_account);
+                    await _context.SaveChangesAsync();
+
+                    sp_instructor instructor = new sp_instructor();
+                    instructor.Name = sp_user_account.Name;
+
+                    _context.sp_instructor.Add(instructor);
+                    await _context.SaveChangesAsync();
+
+
+                    return RedirectToAction("index", "sp_user_account");
+                        
+
+
+                    }
+                else
+                {
+                    HttpContext.Session.SetString("stname", sp_user_account.Name);
+                    sp_user_account.Role = "student";
+                    _context.Add(sp_user_account);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Create", "sp_student");
+                }
+
+               
+               
             }
             
         }

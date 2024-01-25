@@ -12,7 +12,7 @@ namespace Supervise_.Models
 
         public string Email { get; set; }
         public int Phone { get; set; }
-        public int Completed_hrs { get; set; }
+        public string Completed_hrs { get; set; }
         public decimal GPA { get; set; }
         
         public string Is_pass_web2 { get; set; }
