@@ -36,7 +36,7 @@ namespace Supervise_.Controllers
             }
 
             var sp_student = await _context.sp_student
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (sp_student == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
         {
-            if (id != sp_student.Id)
+            if (id != sp_student.id)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace Supervise_.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!sp_studentExists(sp_student.Id))
+                    if (!sp_studentExists(sp_student.id))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace Supervise_.Controllers
             }
 
             var sp_student = await _context.sp_student
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (sp_student == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace Supervise_.Controllers
 
         private bool sp_studentExists(int id)
         {
-          return (_context.sp_student?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.sp_student?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
