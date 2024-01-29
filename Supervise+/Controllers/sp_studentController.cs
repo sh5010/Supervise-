@@ -36,7 +36,7 @@ namespace Supervise_.Controllers
             }
 
             var sp_student = await _context.sp_student
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (sp_student == null)
             {
                 return NotFound();
@@ -56,14 +56,15 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
+        public async Task<IActionResult> Create([Bind("id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
         {
-            sp_student.Name = HttpContext.Session.GetString("stname");
-
-            _context.Add(sp_student);
+            if (ModelState.IsValid)
+            {
+                _context.Add(sp_student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            
+            }
+            return View(sp_student);
         }
 
         // GET: sp_student/Edit/5
@@ -87,9 +88,9 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
         {
-            if (id != sp_student.Id)
+            if (id != sp_student.id)
             {
                 return NotFound();
             }
@@ -103,7 +104,7 @@ namespace Supervise_.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!sp_studentExists(sp_student.Id))
+                    if (!sp_studentExists(sp_student.id))
                     {
                         return NotFound();
                     }
@@ -126,7 +127,7 @@ namespace Supervise_.Controllers
             }
 
             var sp_student = await _context.sp_student
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (sp_student == null)
             {
                 return NotFound();
@@ -156,7 +157,7 @@ namespace Supervise_.Controllers
 
         private bool sp_studentExists(int id)
         {
-          return (_context.sp_student?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.sp_student?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Supervisor_id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Supervisor_Name)
             </th>
             <th>
@@ -37,7 +34,7 @@
                 @Html.DisplayNameFor(model => model.Project_description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.status)
+                @Html.DisplayNameFor(model => model.statue)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Registration_code)
@@ -48,9 +45,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supervisor_id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Supervisor_Name)
             </td>
@@ -73,7 +67,7 @@
                 @Html.DisplayFor(modelItem => item.Project_description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.status)
+                @Html.DisplayFor(modelItem => item.statue)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Registration_code)

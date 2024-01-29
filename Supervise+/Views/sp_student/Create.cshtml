@@ -1,24 +1,24 @@
 ﻿@model Supervise_.Models.sp_student
 
+@{
+    ViewData["Title"] = "Create";
+}
 
+<h1>Create</h1>
 
-<h1>Register</h1>
-
-<h4>Part 2</h4>
+<h4>sp_student</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-          
-             <div class="form-group">
+            <div class="form-group">
                           <label> Gender of student </label>
                           <div class="checkbox">
-                <label> <input type="radio" asp-for="Gender" value="Female" /> Yes</label>
+                <label> <input type="radio" asp-for="Gender" value="Female" /> Female</label>
                           </div>
                           <div class="checkbox">
-                <label> <input type="radio" asp-for="Gender" value="Male"  />No</label>
+                <label> <input type="radio" asp-for="Gender" value="Male"  />Male</label>
                           </div>
                 <span asp-validation-for="Gender" class="text-danger"></span>
                       </div>
@@ -53,7 +53,7 @@
          
 
             <div class="form-group">
-                          <label> The student passes web2 one of the requirements for GP </label>
+                          <label> The student passed web2 </label>
                           <div class="checkbox">
                 <label> <input type="radio" asp-for="Is_pass_web2" value="yes" /> Yes</label>
                           </div>
@@ -65,7 +65,7 @@
            
  
                      <div class="form-group">
-                          <label> The student passes project management one of the requirements for GP </label>
+                          <label> The student passed project management </label>
                           <div class="checkbox">
                 <label> <input type="radio" asp-for="Is_pass_pr_mang" value="yes" /> Yes</label>
                           </div>
@@ -81,7 +81,6 @@
         </form>
     </div>
 </div>
-
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
