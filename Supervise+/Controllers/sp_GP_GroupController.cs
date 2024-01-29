@@ -58,8 +58,9 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
-
-            sp_GP_Group.sthead_name =;
+            
+            string stname = (HttpContext.Session.GetString("Name"));
+            sp_GP_Group.sthead_name = stname;
             sp_GP_Group.Year = DateTime.Today.Year;
             sp_GP_Group.statue = "New";
             sp_GP_Group.Registration_code = "0";
@@ -67,7 +68,7 @@ namespace Supervise_.Controllers
             await _context.SaveChangesAsync();
             //  return RedirectToAction(nameof(Index));
 
-            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == sp_GP_Group.sthead_name).FirstOrDefaultAsync();
+            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name ==sp_GP_Group.sthead_name).FirstOrDefaultAsync();
             Sp_studentgrouping studentGroup = new Sp_studentgrouping();
 
             studentGroup.Group_id = cgp.id;
