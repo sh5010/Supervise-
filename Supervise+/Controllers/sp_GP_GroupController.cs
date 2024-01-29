@@ -58,6 +58,7 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(sp_GP_Group);
