@@ -59,14 +59,27 @@ namespace Supervise_.Controllers
         public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
 
-            if (ModelState.IsValid)
-            {
-                _context.Add(sp_GP_Group);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(sp_GP_Group);
+            sp_GP_Group.sthead_name =;
+            sp_GP_Group.Year = DateTime.Today.Year;
+            sp_GP_Group.statue = "New";
+            sp_GP_Group.Registration_code = "0";
+            _context.Add(sp_GP_Group);
+            await _context.SaveChangesAsync();
+            //  return RedirectToAction(nameof(Index));
+
+            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == sp_GP_Group.sthead_name).FirstOrDefaultAsync();
+            Sp_studentgrouping studentGroup = new Sp_studentgrouping();
+
+            studentGroup.Group_id = cgp.id;
+            studentGroup.Student_Name = sp_GP_Group.sthead_name;
+            studentGroup.Student_Status = "ok";
+            _context.Sp_studentgrouping.Add(studentGroup);
+            await _context.SaveChangesAsync();
+
+
+            return RedirectToAction(nameof(Index));
         }
+    
 
         // GET: sp_GP_Group/Edit/5
         public async Task<IActionResult> Edit(int? id)
