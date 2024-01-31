@@ -2,6 +2,7 @@
 {
     public class sp_gp_ideas
     {
+        public int id { get; set; }
         public string InstructorName { get; set; }
 
         public string Idea { get; set; }
