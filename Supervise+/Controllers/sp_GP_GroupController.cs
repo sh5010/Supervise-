@@ -64,30 +64,27 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,Project_idea,Project_scope,Project_title,Project_description")] sp_GP_Group sp_GP_Group)
         {
   
             string stname = (HttpContext.Session.GetString("Name"));
-            sp_GP_Group.sthead_name = stname;
+            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
             sp_GP_Group.Year = DateTime.Today.Year;
             sp_GP_Group.statue = "New";
             sp_GP_Group.Registration_code = "0";
             _context.Add(sp_GP_Group);
             await _context.SaveChangesAsync();
             //  return RedirectToAction(nameof(Index));
-        
-            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name ==sp_GP_Group.sthead_name).FirstOrDefaultAsync();
             Sp_studentgrouping studentGroup = new Sp_studentgrouping();
-
-            studentGroup.Group_id = cgp.id;
+            studentGroup.Group_id = sp_GP_Group.id;
             studentGroup.Student_Name = sp_GP_Group.sthead_name;
             studentGroup.Student_Status = "ok";
             _context.Sp_studentgrouping.Add(studentGroup);
             await _context.SaveChangesAsync();
-            sp_instructor instructor = new sp_instructor();
-            instructor.Name = sp_GP_Group.Supervisor_Name;
-            _context.sp_instructor.Add(instructor);
-            await _context.SaveChangesAsync();
+           // sp_instructor instructor = new sp_instructor();
+           // instructor.Name = sp_GP_Group.Supervisor_Name;
+           // _context.sp_instructor.Add(instructor);
+           // await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     
