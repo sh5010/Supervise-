@@ -56,7 +56,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
+        public async Task<IActionResult> Create([Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests,rank")] sp_instructor sp_instructor)
         {
 
 
@@ -85,7 +85,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests")] sp_instructor sp_instructor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests,rank")] sp_instructor sp_instructor)
         {
 
 

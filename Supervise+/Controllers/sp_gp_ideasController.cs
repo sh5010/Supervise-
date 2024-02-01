@@ -22,7 +22,9 @@ namespace Supervise_.Controllers
         // GET: sp_gp_ideas
         public async Task<IActionResult> Index()
         {
-              return _context.sp_gp_ideas != null ? 
+            string ro = (HttpContext.Session.GetString("Role"));
+            ViewData["Role"] = ro;
+            return _context.sp_gp_ideas != null ? 
                           View(await _context.sp_gp_ideas.ToListAsync()) :
                           Problem("Entity set 'Supervise_Context.sp_gp_ideas'  is null.");
         }
@@ -58,29 +60,29 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,InstructorName,Idea,Description")] sp_gp_ideas sp_gp_ideas)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(sp_gp_ideas);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(sp_gp_ideas);
-        }
+            string na = (HttpContext.Session.GetString("Name"));
+            sp_gp_ideas.InstructorName = na;
+            _context.Add(sp_gp_ideas);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
+        }
         // GET: sp_gp_ideas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.sp_gp_ideas == null)
-            {
-                return NotFound();
-            }
+            string na = (HttpContext.Session.GetString("Name"));
+            
+            
 
             var sp_gp_ideas = await _context.sp_gp_ideas.FindAsync(id);
-            if (sp_gp_ideas == null)
+            if (na != sp_gp_ideas.InstructorName)
             {
-                return NotFound();
+                ViewData["Message"] = "You cannot edit other instructor idea";
+                return View();
+
             }
-            return View(sp_gp_ideas);
+
+                return View(sp_gp_ideas);
         }
 
         // POST: sp_gp_ideas/Edit/5

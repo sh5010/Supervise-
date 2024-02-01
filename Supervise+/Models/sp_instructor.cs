@@ -14,6 +14,7 @@
         public string Background { get; set; }
 
         public string interests { get; set; }
+        public string rank { get; set; }
 
     }
 }

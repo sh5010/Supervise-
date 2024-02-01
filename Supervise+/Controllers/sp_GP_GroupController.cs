@@ -46,8 +46,16 @@ namespace Supervise_.Controllers
         }
 
         // GET: sp_GP_Group/Create
-        public IActionResult Create()
-        {
+        public async Task<IActionResult> Create()
+
+        {   var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); ;
+
+             int drl =  grst.Dr_supr_limit;
+             int msl = grst.Ms_supr_limit;
+
+            var li = await _context.sp_instructor.FromSqlRaw("select * from sp_instructor where (Group_Count < '"+drl+ "' and rank = 'Doctor') or (Group_Count < '"+msl+"' and rank = 'Master')").ToListAsync(); ;
+            ViewBag.Superv = li;
+
             return View();
         }
 

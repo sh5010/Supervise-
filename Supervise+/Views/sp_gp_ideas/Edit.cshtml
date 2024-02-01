@@ -14,8 +14,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="InstructorName" class="control-label"></label>
-                <input asp-for="InstructorName" class="form-control" />
+               
+                <input asp-for="InstructorName" type="hidden" class="form-control" />
                 <span asp-validation-for="InstructorName" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
         </form>
     </div>
 </div>
-
+ <p style="color:red"> @ViewData["message"]</p>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
