@@ -45,14 +45,14 @@ namespace Supervise_.Controllers
         {
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             var mail = new MailMessage();
-            mail.From = new MailAddress("grproject2024@gmail.com");
+            mail.From = new MailAddress("ccse.projects@gmail.com");
             mail.To.Add(address); // receiver email address
             mail.Subject = subject;
             mail.IsBodyHtml = true;
             mail.Body = body;
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("grproject2024@gmail.com", "hgyidahokxrhyxnn");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("ccse.projects@gmail.com", "fpziukvqekvoqjcx");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             ViewData["Message"] = "Email sent.";
