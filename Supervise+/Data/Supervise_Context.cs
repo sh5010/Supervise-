@@ -28,6 +28,8 @@ namespace Supervise_.Data
         
         public DbSet<Supervise_.Models.sp_gp_ideas>? sp_gp_ideas { get; set; }
         
+        public DbSet<Supervise_.Models.sp_faculity_roles>? sp_faculity_roles { get; set; }
+        
        
         
         
