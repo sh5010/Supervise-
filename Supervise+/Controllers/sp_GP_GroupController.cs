@@ -75,12 +75,12 @@ namespace Supervise_.Controllers
             _context.Add(sp_GP_Group);
             await _context.SaveChangesAsync();
             //  return RedirectToAction(nameof(Index));
-            Sp_studentgrouping studentGroup = new Sp_studentgrouping();
-            studentGroup.Group_id = sp_GP_Group.id;
-            studentGroup.Student_Name = sp_GP_Group.sthead_name;
-            studentGroup.Student_Status = "ok";
-            _context.Sp_studentgrouping.Add(studentGroup);
-            await _context.SaveChangesAsync();
+            // Sp_studentgrouping studentGroup = new Sp_studentgrouping();
+            // studentGroup.Group_id = sp_GP_Group.id;
+            //studentGroup.Student_Name = sp_GP_Group.sthead_name;
+            //studentGroup.Student_Status = "ok";
+            //_context.Sp_studentgrouping.Add(studentGroup);
+            //await _context.SaveChangesAsync();
            // sp_instructor instructor = new sp_instructor();
            // instructor.Name = sp_GP_Group.Supervisor_Name;
            // _context.sp_instructor.Add(instructor);
