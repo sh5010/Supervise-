@@ -58,7 +58,8 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests,rank")] sp_instructor sp_instructor)
         {
-
+            if (sp_instructor.Background == null) sp_instructor.Background = String.Empty;
+            if (sp_instructor.interests == null) sp_instructor.interests = String.Empty;
 
             _context.Add(sp_instructor);
             await _context.SaveChangesAsync();
@@ -77,6 +78,9 @@ namespace Supervise_.Controllers
             {
                 return NotFound();
             }
+            if (sp_instructor.Background == null) sp_instructor.Background = String.Empty;
+            if (sp_instructor.interests == null) sp_instructor.interests = String.Empty;
+
             return View(sp_instructor);
         }
 

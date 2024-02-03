@@ -48,7 +48,8 @@ namespace Supervise_.Controllers
         // GET: sp_GP_Group/Create
         public async Task<IActionResult> Create()
 
-        {   var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); ;
+        {   
+            var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); ;
 
              int drl =  grst.Dr_supr_limit;
              int msl = grst.Ms_supr_limit;
@@ -66,7 +67,9 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,Supervisor_Name,Project_idea,Project_scope,Project_title,Project_description")] sp_GP_Group sp_GP_Group)
         {
-  
+            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+
             string stname = (HttpContext.Session.GetString("Name"));
             var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
             sp_GP_Group.Year = DateTime.Today.Year;
@@ -102,6 +105,9 @@ namespace Supervise_.Controllers
             {
                 return NotFound();
             }
+            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+
             return View(sp_GP_Group);
         }
 
