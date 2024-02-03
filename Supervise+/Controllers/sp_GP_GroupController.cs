@@ -73,23 +73,31 @@ namespace Supervise_.Controllers
 
             string stname = (HttpContext.Session.GetString("Name"));
             var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
-            sp_GP_Group.Year = DateTime.Today.Year;
-            sp_GP_Group.statue = "New";
-            sp_GP_Group.Registration_code = "0";
-            _context.Add(sp_GP_Group);
-            await _context.SaveChangesAsync();
-            //  return RedirectToAction(nameof(Index));
-            // Sp_studentgrouping studentGroup = new Sp_studentgrouping();
-            // studentGroup.Group_id = sp_GP_Group.id;
-            //studentGroup.Student_Name = sp_GP_Group.sthead_name;
-            //studentGroup.Student_Status = "ok";
-            //_context.Sp_studentgrouping.Add(studentGroup);
-            //await _context.SaveChangesAsync();
-           // sp_instructor instructor = new sp_instructor();
-           // instructor.Name = sp_GP_Group.Supervisor_Name;
-           // _context.sp_instructor.Add(instructor);
-           // await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (cgp == null)
+            {
+                sp_GP_Group.sthead_name = stname;
+                int yy = DateTime.Today.Year;
+                int mm = DateTime.Today.Month;
+                if (mm < 8) {
+                    yy = yy - 1;  // 5/2023 belong to 2022
+                } 
+
+
+                sp_GP_Group.Year = yy;
+                sp_GP_Group.statue = "Supervisor Wait";
+                sp_GP_Group.Registration_code = "0";
+                _context.Add(sp_GP_Group);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            } else
+            {
+                ViewData["Message"] = "You can not Create two Groups.";
+                List<sp_instructor> li = new List<sp_instructor>(); // avoid errorr
+                ViewBag.Superv = li;
+                return View();
+            }
+           
+
         }
     
 
