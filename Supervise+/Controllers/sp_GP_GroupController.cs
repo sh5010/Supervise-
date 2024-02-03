@@ -68,7 +68,8 @@ namespace Supervise_.Controllers
         public async Task<IActionResult> Create([Bind("id,Supervisor_Name,Project_idea,Project_scope,Project_title,Project_description")] sp_GP_Group sp_GP_Group)
         {
             if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
-            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
+            if (sp_GP_Group.Project_description == null) sp_GP_Group.Project_description = String.Empty;
 
             string stname = (HttpContext.Session.GetString("Name"));
             var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
@@ -106,7 +107,8 @@ namespace Supervise_.Controllers
                 return NotFound();
             }
             if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
-            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
+            if (sp_GP_Group.Project_description == null) sp_GP_Group.Project_description = String.Empty;
 
             return View(sp_GP_Group);
         }
