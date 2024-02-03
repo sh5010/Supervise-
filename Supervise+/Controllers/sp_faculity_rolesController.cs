@@ -58,14 +58,12 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,InstructorName,Supervisor,Examiner")] sp_faculity_roles sp_faculity_roles)
         {
-            if (ModelState.IsValid)
-            {
+           
                 _context.Add(sp_faculity_roles);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sp_faculity_roles);
-        }
+         
 
         // GET: sp_faculity_roles/Edit/5
         public async Task<IActionResult> Edit(int? id)
