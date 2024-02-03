@@ -85,12 +85,13 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Gender,Email,Phone_Number,Year,Group_Count,Background,interests,rank")] sp_instructor sp_instructor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Gender,Email,Phone_Number,Year,Group_Count,Background,interests,rank")] sp_instructor sp_instructor)
         {
 
+            if (sp_instructor.Background == null) sp_instructor.Background = string.Empty;
+            if (sp_instructor.interests == null) sp_instructor.interests = string.Empty;
 
-            string na = (HttpContext.Session.GetString("Name"));
-            sp_instructor.Name = na;
+
             _context.Update(sp_instructor);
             await _context.SaveChangesAsync();
 
