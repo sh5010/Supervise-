@@ -65,7 +65,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,Project_idea,Project_scope,Project_title,Project_description")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
             if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
