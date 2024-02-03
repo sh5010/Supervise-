@@ -14,6 +14,8 @@
         public string Project_description { get; set; }
         public string statue { get; set; }
         public string Registration_code { get; set; }
+        public string gender { get; set; }
+
 
 
 

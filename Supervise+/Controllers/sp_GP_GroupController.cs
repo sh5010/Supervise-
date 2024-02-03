@@ -80,9 +80,11 @@ namespace Supervise_.Controllers
                 int mm = DateTime.Today.Month;
                 if (mm < 8) {
                     yy = yy - 1;  // 5/2023 belong to 2022
-                } 
+                }
 
+                var st = await _context.sp_student.Where(m => m.Name == stname).FirstOrDefaultAsync();
 
+                sp_GP_Group.gender = st.Gender;
                 sp_GP_Group.Year = yy;
                 sp_GP_Group.statue = "Supervisor Wait";
                 sp_GP_Group.Registration_code = "0";
@@ -92,7 +94,7 @@ namespace Supervise_.Controllers
             } else
             {
                 ViewData["Message"] = "You can not Create two Groups.";
-                List<sp_instructor> li = new List<sp_instructor>(); // avoid errorr
+                List<sp_instructor> li = new List<sp_instructor>(); // avoid error
                 ViewBag.Superv = li;
                 return View();
             }

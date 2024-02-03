@@ -23,9 +23,8 @@ namespace Supervise_.Controllers
         // GET: sp_user_account
         public async Task<IActionResult> Index()
         {
-              return _context.sp_user_account != null ? 
-                          View(await _context.sp_user_account.ToListAsync()) :
-                          Problem("Entity set 'Supervise_Context.sp_user_account'  is null.");
+            var usr = await _context.sp_user_account.FromSqlRaw("select * from sp_user_account where Role ='instructor' ").ToListAsync();
+            return View(usr);
         }
 
         // GET: sp_user_account/Details/5
@@ -79,13 +78,55 @@ namespace Supervise_.Controllers
             }
             else
             {
-                string ro ="";
-                ro = HttpContext.Session.GetString("Role");
-                HttpContext.Session.SetString("Role", "");
+                
+                    HttpContext.Session.SetString("stname", sp_user_account.Name);
+                    sp_user_account.Role = "student";
+                    _context.Add(sp_user_account);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Create", "sp_student");
+                
 
+               
+               
+            }
+            
+        }
 
-                if (ro == "gpcm")
-                {
+        public IActionResult CreateInst()
+        {
+            return View();
+        }
+
+        // POST: sp_user_account/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateInst([Bind("Id,Name,Password,Role")] sp_user_account sp_user_account)
+        {
+            var builder = WebApplication.CreateBuilder();
+            string conStr = builder.Configuration.GetConnectionString("Supervise_Context");
+            SqlConnection conn = new SqlConnection(conStr);
+            conn.Open();
+            Boolean flage = false;
+            string sql = "select * from sp_user_account  where name = '" + sp_user_account.Name + "'";
+            SqlCommand comm = new SqlCommand(sql, conn);
+            SqlDataReader reader = comm.ExecuteReader();
+            if (reader.Read())
+            { flage = true; }
+            reader.Close();
+            conn.Close();
+            if (flage == true)
+            {
+                ViewData["message"] = "name already exists";
+                return View();
+
+            }
+            else
+            {
+                
+
+                
                     sp_user_account.Role = "instructor";
                     _context.Add(sp_user_account);
                     await _context.SaveChangesAsync();
@@ -93,28 +134,25 @@ namespace Supervise_.Controllers
                     sp_instructor instructor = new sp_instructor();
                     instructor.Name = sp_user_account.Name;
 
-                    _context.sp_instructor.Add(instructor);
+                instructor.Background = String.Empty;
+                instructor.interests = String.Empty;
+
+
+
+                _context.sp_instructor.Add(instructor);
                     await _context.SaveChangesAsync();
 
 
                     return RedirectToAction("index", "sp_user_account");
-                        
 
 
-                    }
-                else
-                {
-                    HttpContext.Session.SetString("stname", sp_user_account.Name);
-                    sp_user_account.Role = "student";
-                    _context.Add(sp_user_account);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Create", "sp_student");
-                }
 
-               
-               
+
+
+
+
             }
-            
+
         }
 
         // GET: sp_user_account/Edit/5

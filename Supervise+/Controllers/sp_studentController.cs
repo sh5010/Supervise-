@@ -58,13 +58,19 @@ namespace Supervise_.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,Name,Gender,Email,Phone,Completed_hrs,GPA,Is_pass_web2,Is_pass_pr_mang")] sp_student sp_student)
         {
-            if (ModelState.IsValid)
+            if (sp_student.Completed_hrs == "yes" && sp_student.Is_pass_web2 == "yes" && sp_student.Is_pass_pr_mang == "yes")
             {
+                sp_student.Name = (HttpContext.Session.GetString("stname"));
                 _context.Add(sp_student);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("sthome","Home");
+            } else
+            {
+                ViewData["message"] = "cannot register need to contact the GP committee ";
+                return View(sp_student);
+
+
             }
-            return View(sp_student);
         }
 
         // GET: sp_student/Edit/5

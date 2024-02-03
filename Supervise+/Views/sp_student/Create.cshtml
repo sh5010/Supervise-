@@ -84,7 +84,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+<p style="color:red"> @ViewData["message"]</p>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
