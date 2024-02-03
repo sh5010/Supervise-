@@ -72,7 +72,7 @@ namespace Supervise_.Controllers
             if (sp_GP_Group.Project_description == null) sp_GP_Group.Project_description = String.Empty;
 
             string stname = (HttpContext.Session.GetString("Name"));
-            var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
+           // var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
             sp_GP_Group.Year = DateTime.Today.Year;
             sp_GP_Group.statue = "New";
             sp_GP_Group.Registration_code = "0";
