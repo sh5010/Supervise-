@@ -123,16 +123,16 @@ namespace Supervise_.Controllers
         // GET: sp_gp_ideas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.sp_gp_ideas == null)
-            {
-                return NotFound();
-            }
+            string na = (HttpContext.Session.GetString("Name"));
 
-            var sp_gp_ideas = await _context.sp_gp_ideas
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (sp_gp_ideas == null)
+
+
+            var sp_gp_ideas = await _context.sp_gp_ideas.FindAsync(id);
+            if (na != sp_gp_ideas.InstructorName)
             {
-                return NotFound();
+                ViewData["Message"] = "You cannot Delet other instructor idea";
+                return View();
+
             }
 
             return View(sp_gp_ideas);
@@ -141,6 +141,7 @@ namespace Supervise_.Controllers
         // POST: sp_gp_ideas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.sp_gp_ideas == null)
