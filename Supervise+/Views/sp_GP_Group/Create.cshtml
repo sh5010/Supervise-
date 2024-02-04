@@ -22,26 +22,31 @@
 
                 </select> 
 
-            <div class="form-group">
-                <label asp-for="Project_idea" class="control-label"> Enter Your Project idea</label>
-                <textarea asp-for="Project_idea" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Project_idea" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project_scope" class="control-label">Enter The Scope</label>
-                <textarea asp-for="Project_scope" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Project_scope" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Project_title" class="control-label">Enter The title </label>
+                 <div class="form-group">
+                <label asp-for="Project_title" class="control-label">Enter The Project title </label>
                 <input asp-for="Project_title"  class="form-control" />
                 <span asp-validation-for="Project_title" class="text-danger"></span>
             </div>
+            <br/>
             <div class="form-group">
-                <label asp-for="Project_description" class="control-label">Enter The description </label>
-                 <textarea asp-for="Project_description" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Project_description" class="text-danger"></span>
+                <label asp-for="Project_Project_ProblemDefinition" class="control-label"> Enter The Project Problem Definition </label>
+                <textarea asp-for="Project_Project_ProblemDefinition" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Project_Project_ProblemDefinition" class="text-danger"></span>
             </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="Project_scope" class="control-label">Enter The Project Scope</label>
+                <textarea asp-for="Project_scope" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Project_scope" class="text-danger"></span>
+            </div>
+            <br/>
+           
+            <div class="form-group">
+                <label asp-for="Project_Objective" class="control-label">Enter The Project Objectives </label>
+                 <textarea asp-for="Project_Objective" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Project_Objective" class="text-danger"></span>
+            </div>
+            <bt/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

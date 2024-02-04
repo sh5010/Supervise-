@@ -65,11 +65,11 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
-            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_Project_ProblemDefinition == null) sp_GP_Group.Project_Project_ProblemDefinition = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
-            if (sp_GP_Group.Project_description == null) sp_GP_Group.Project_description = String.Empty;
+            if (sp_GP_Group.Project_Objective == null) sp_GP_Group.Project_Objective = String.Empty;
 
             string stname = (HttpContext.Session.GetString("Name"));
             var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
@@ -116,9 +116,9 @@ namespace Supervise_.Controllers
             {
                 return NotFound();
             }
-            if (sp_GP_Group.Project_idea == null) sp_GP_Group.Project_idea = String.Empty;
+            if (sp_GP_Group.Project_Project_ProblemDefinition == null) sp_GP_Group.Project_Project_ProblemDefinition = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
-            if (sp_GP_Group.Project_description == null) sp_GP_Group.Project_description = String.Empty;
+            if (sp_GP_Group.Project_Objective == null) sp_GP_Group.Project_Objective = String.Empty;
 
             return View(sp_GP_Group);
         }
@@ -128,7 +128,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_idea,Project_scope,Project_title,Project_description,statue,Registration_code")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code")] sp_GP_Group sp_GP_Group)
         {
             if (id != sp_GP_Group.id)
             {
