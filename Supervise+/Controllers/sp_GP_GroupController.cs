@@ -106,6 +106,14 @@ namespace Supervise_.Controllers
         // GET: sp_GP_Group/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); ;
+
+            int drl = grst.Dr_supr_limit;
+            int msl = grst.Ms_supr_limit;
+
+            var li = await _context.sp_instructor.FromSqlRaw("select * from sp_instructor where (Group_Count < '" + drl + "' and rank = 'Doctor') or (Group_Count < '" + msl + "' and rank = 'Master')").ToListAsync(); ;
+            ViewBag.Superv = li;
+
             if (id == null || _context.sp_GP_Group == null)
             {
                 return NotFound();
@@ -128,34 +136,14 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code,gender")] sp_GP_Group sp_GP_Group)
         {
-            if (id != sp_GP_Group.id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
+           
                     _context.Update(sp_GP_Group);
                     await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!sp_GP_GroupExists(sp_GP_Group.id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+               
                 return RedirectToAction(nameof(Index));
-            }
-            return View(sp_GP_Group);
+           
         }
 
         // GET: sp_GP_Group/Delete/5
