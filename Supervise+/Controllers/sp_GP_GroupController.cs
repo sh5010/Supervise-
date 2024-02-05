@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Supervise_.Data;
 using Supervise_.Models;
@@ -25,6 +26,14 @@ namespace Supervise_.Controllers
             var gg = _context.sp_GP_Group.ToListAsync();
             return View(gg);
            
+        }
+
+        public async Task<IActionResult> MyIndex()
+        {
+            string na = (HttpContext.Session.GetString("Name"));
+            var grst = await _context.sp_GP_Group.FromSqlRaw("select * from sp_GP_Group where Supervisor_Name = '" + na + "' AND statue = 'Supervisor Wait'").ToListAsync();
+
+            return View(grst);
         }
 
         // GET: sp_GP_Group/Details/5
@@ -49,7 +58,7 @@ namespace Supervise_.Controllers
         public async Task<IActionResult> Create()
 
         {   
-            var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); ;
+            var grst = await _context.sp_gp_setting.FromSqlRaw("select * from sp_gp_setting where Id = 2").FirstOrDefaultAsync(); 
 
              int drl =  grst.Dr_supr_limit;
              int msl = grst.Ms_supr_limit;
@@ -65,7 +74,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Create([Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code,MassegeToSupervisor")] sp_GP_Group sp_GP_Group)
         {
             if (sp_GP_Group.Project_Project_ProblemDefinition == null) sp_GP_Group.Project_Project_ProblemDefinition = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
@@ -127,7 +136,7 @@ namespace Supervise_.Controllers
             if (sp_GP_Group.Project_Project_ProblemDefinition == null) sp_GP_Group.Project_Project_ProblemDefinition = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
             if (sp_GP_Group.Project_Objective == null) sp_GP_Group.Project_Objective = String.Empty;
-
+            if (sp_GP_Group.MassegeToSupervisor==null) sp_GP_Group.MassegeToSupervisor = String.Empty;
             return View(sp_GP_Group);
         }
 
@@ -136,7 +145,7 @@ namespace Supervise_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code,gender")] sp_GP_Group sp_GP_Group)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Supervisor_Name,sthead_name,Year,Project_Project_ProblemDefinition,Project_scope,Project_title,Project_Objective,statue,Registration_code,gender,MassegeToSupervisor")] sp_GP_Group sp_GP_Group)
         {
            
                     _context.Update(sp_GP_Group);
@@ -187,5 +196,9 @@ namespace Supervise_.Controllers
         {
           return (_context.sp_GP_Group?.Any(e => e.id == id)).GetValueOrDefault();
         }
+
+
+     
+
     }
 }

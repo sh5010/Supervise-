@@ -71,7 +71,12 @@
                  <textarea asp-for="Project_Objective" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Project_Objective" class="text-danger"></span>
             </div>
-            <bt/>
+             <div class="form-group">
+                <label asp-for="MassegeToSupervisor" class="control-label">Send Message to Supervisor </label>
+                 <textarea asp-for="MassegeToSupervisor" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="MassegeToSupervisor" class="text-danger"></span>
+            </div>
+            <br/>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

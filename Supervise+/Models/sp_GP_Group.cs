@@ -16,7 +16,7 @@
         public string Registration_code { get; set; }
         public string gender { get; set; }
 
-
+        public string MassegeToSupervisor { get; set; }
 
 
 
