@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Supervise_.Data;
 using Supervise_.Models;
@@ -145,5 +146,7 @@ namespace Supervise_.Controllers
         {
           return (_context.sp_instructor?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+   
     }
 }

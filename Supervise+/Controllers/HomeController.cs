@@ -21,6 +21,21 @@ namespace Supervise_.Controllers
         }
         public IActionResult FacultyHome()
         {
+            
+                    string sql = "";
+
+                    var builder = WebApplication.CreateBuilder();
+                    string conStr = builder.Configuration.GetConnectionString("Supervise_Context");
+                    SqlConnection conn = new SqlConnection(conStr);
+
+                    SqlCommand comm;
+                    conn.Open();
+                    string na = (HttpContext.Session.GetString("Name"));
+                    sql = "SELECT COUNT( Id)  FROM sp_GP_Group where Supervisor_Name = '" + na + "' AND statue = 'Supervisor Wait'";
+                    comm = new SqlCommand(sql, conn);
+                    ViewData["d1"] = (int)comm.ExecuteScalar();
+
+            
             return View();
         }
 
@@ -119,5 +134,7 @@ namespace Supervise_.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
+
 }
