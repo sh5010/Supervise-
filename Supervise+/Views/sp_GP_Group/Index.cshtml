@@ -27,13 +27,7 @@
                 @Html.DisplayNameFor(model => model.statue)
             </th>
             
-            <th>
-                @Html.DisplayNameFor(model => model.Registration_code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MassegeToSupervisor)
-            </th>
-            <th></th>
+         
         </tr>
     </thead>
     <tbody>
@@ -55,12 +49,7 @@
             </td
            
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Registration_code)
-            </td>
-             <td>
-                @Html.DisplayFor(modelItem => item.MassegeToSupervisor)
-            </td>
+          
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.id">Details</a> |

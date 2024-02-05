@@ -23,7 +23,7 @@ namespace Supervise_.Controllers
         // GET: sp_GP_Group
         public async Task<IActionResult> Index()
         {
-            var gg = _context.sp_GP_Group.ToListAsync();
+            var gg = await _context.sp_GP_Group.ToListAsync();
             return View(gg);
            
         }
@@ -79,7 +79,9 @@ namespace Supervise_.Controllers
             if (sp_GP_Group.Project_Project_ProblemDefinition == null) sp_GP_Group.Project_Project_ProblemDefinition = String.Empty;
             if (sp_GP_Group.Project_scope == null) sp_GP_Group.Project_scope = String.Empty;
             if (sp_GP_Group.Project_Objective == null) sp_GP_Group.Project_Objective = String.Empty;
+            if (sp_GP_Group.MassegeToSupervisor == null) sp_GP_Group.MassegeToSupervisor = String.Empty;
 
+            
             string stname = (HttpContext.Session.GetString("Name"));
             var cgp = await _context.sp_GP_Group.Where(m => m.sthead_name == stname).FirstOrDefaultAsync();
             if (cgp == null)
