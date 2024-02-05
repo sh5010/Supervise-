@@ -34,8 +34,9 @@ namespace Supervise_.Controllers
                     sql = "SELECT COUNT( Id)  FROM sp_GP_Group where Supervisor_Name = '" + na + "' AND statue = 'Supervisor Wait'";
                     comm = new SqlCommand(sql, conn);
                     ViewData["d1"] = (int)comm.ExecuteScalar();
+                    ViewData["na"] = na;
 
-            
+
             return View();
         }
 
@@ -126,6 +127,9 @@ namespace Supervise_.Controllers
 
         public IActionResult sthome()
         {
+            string na = (HttpContext.Session.GetString("Name"));
+           
+            ViewData["na"] = na;
             return View();
         }
 

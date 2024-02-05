@@ -1,20 +1,17 @@
 ﻿@model Supervise_.Models.sp_GP_Group
 
-@{
-    ViewData["Title"] = "Create";
-}
 
-<h1>Create New Group</h1>
 
-<h4> For Graduation Project </h4>
+<h1>Project registration form </h1>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-10">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
              <label asp-for="Supervisor_Name" class="control-label">choose a supervisor name </label>
                    <select  class="form-control" asp-for="Supervisor_Name">
-                    <option value="">select a supervisour</option>
+                    <option value="">Select a Supervisor</option>
                       @foreach (sp_instructor spr in ViewBag.Superv)
                         {
                              <option value = "@spr.Name"  > @spr.Name  </option>
@@ -50,10 +47,10 @@
             <div class="form-group">
                 <label asp-for="MassegeToSupervisor" class="control-label">Send Message to Supervisor </label>
                  <textarea asp-for="MassegeToSupervisor" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="MassegeToSupervisor" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </form>
     </div>
