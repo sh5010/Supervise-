@@ -130,7 +130,7 @@ namespace Supervise_.Controllers
             var sp_gp_ideas = await _context.sp_gp_ideas.FindAsync(id);
             if (na != sp_gp_ideas.InstructorName)
             {
-                ViewData["Message"] = "You cannot Delet other instructor idea";
+                ViewData["Message"] = "You cannot Delete other instructor idea";
                 return View();
 
             }

@@ -22,9 +22,9 @@ namespace Supervise_.Controllers
         // GET: sp_GP_Group
         public async Task<IActionResult> Index()
         {
-              return _context.sp_GP_Group != null ? 
-                          View(await _context.sp_GP_Group.ToListAsync()) :
-                          Problem("Entity set 'Supervise_Context.sp_GP_Group'  is null.");
+            var gg = _context.sp_GP_Group.ToListAsync();
+            return View(gg);
+           
         }
 
         // GET: sp_GP_Group/Details/5
